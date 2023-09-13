@@ -12,10 +12,18 @@ def foo(x):
         rb = foo(x-2)
     return ra + rb
 
-def longest_run(mylist, key):
-    ### TODO
-    pass
-
+def longest_run(myarray, key):
+    longest_run = 0
+    current_run = 0
+    
+    for num in myarray:
+        if num == key:
+            current_run += 1
+            longest_run = max(longest, current_run)
+        else:
+            current_run = 0
+    
+    return longest_run
 
 class Result:
     """ done """
