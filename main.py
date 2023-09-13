@@ -39,8 +39,35 @@ class Result:
     
     
 def longest_run_recursive(mylist, key):
-    ### TODO
-    pass
+    if len(mylist) == 0:
+        return Result(0, 0, 0, True)
+    
+    if len(mylist) == 1:
+        if mylist[0] == key:
+            return Result(1, 1, 1, True)
+        else:
+            return Result(0, 0, 0, False)
+    
+    mid = len(mylist) // 2
+    left_half = mylist[:mid]
+    right_half = mylist[mid:]
+    
+    left_result = longest_run_recursive(left_half, key)
+    right_result = longest_run_recursive(right_half, key)
+    
+    left_size = left_result.left_size
+    right_size = right_result.right_size
+    
+    if left_result.is_entire_range and right_half[0] == key:
+        left_size += right_result.left_size
+    
+    if right_result.is_entire_range and left_half[-1] == key:
+        right_size += left_result.right_size
+    
+    longest_size = max(left_result.longest_size, right_result.longest_size, left_result.right_size + right_result.left_size)
+    is_entire_range = left_result.is_entire_range and right_result.is_entire_range
+    
+    return Result(left_size, right_size, longest_size, is_entire_range)
 
 ## Feel free to add your own tests here.
 def test_longest_run():
