@@ -40,7 +40,7 @@ class Result:
     
 def longest_run_recursive(mylist, key):
     if len(mylist) == 0:
-        return Result(0, 0, 0, True)
+        return Result(0, 0, 0, False)
     
     if len(mylist) == 1:
         if mylist[0] == key:
