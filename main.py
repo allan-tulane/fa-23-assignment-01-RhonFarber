@@ -19,7 +19,7 @@ def longest_run(myarray, key):
     for num in myarray:
         if num == key:
             current_run += 1
-            longest_run = max(longest, current_run)
+            longest_run = max(longest_run, current_run)
         else:
             current_run = 0
     
